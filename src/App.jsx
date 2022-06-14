@@ -35,7 +35,7 @@ export function App() {
     return(
       (obj.restaurant === currentRestaraunt && obj.food_category === currentCategory))
   })
-//console.log(currentMenuItems)
+
   return (
     <main className="App">
       {/* CATEGORIES COLUMN */}
@@ -50,6 +50,7 @@ export function App() {
                   key={category} 
                   onClick={() => setCurrentCategory(category)}
                   isActive={currentCategory === category}
+                  onClose={(e) => {e.stopPropagation(); setCurrentCategory(null);}}
                   />
                 )
               }
@@ -78,6 +79,7 @@ export function App() {
                     key={restaurant} 
                     onClick={() => setCurrentRestaraunt(restaurant)}
                     isActive={currentRestaraunt === restaurant}
+                    onClose={(e) => {e.stopPropagation(); setCurrentRestaraunt(null);}}
                   />   
                 )
               }
@@ -100,6 +102,7 @@ export function App() {
             label = {menuItem.item_name}
             isActive={currentMenu === menuItem}
             onClick={() => setCurrentMenu(menuItem)}
+            onClose={(e) => {e.stopPropagation(); setCurrentMenu(null);}}
             />
            )
            })}
