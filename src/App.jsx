@@ -49,7 +49,6 @@ export function App() {
           title={appInfo.title} 
           tagline={appInfo.tagline} 
           description={appInfo.description}
-          dataSource={appInfo.dataSource}
           />
 
         {/* RESTAURANTS ROW */}
