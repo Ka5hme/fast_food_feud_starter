@@ -26,10 +26,36 @@ export const appInfo = {
 // or this!
 const { data, categories, restaurants } = createDataSet()
 
+
 export function App() {
-  const [currentCategory, setCurrentCategory] = useState("")
-  const [currentRestaraunt, setCurrentRestaraunt] = useState("")
+  const [currentCategory, setCurrentCategory] = useState(null)
+  const [currentRestaraunt, setCurrentRestaraunt] = useState(null)
   const [currentMenu, setCurrentMenu] = useState(null)
+
+  let instructions = "";
+
+ if(currentCategory == null && currentRestaraunt == null && currentMenu == null){
+   instructions = appInfo.instructions.start
+ 
+  }
+ else if(currentCategory != null && currentRestaraunt == null && currentMenu == null){
+     instructions = appInfo.instructions.onlyCategory
+    
+  }
+ else if(currentCategory == null && currentRestaraunt != null && currentMenu == null){
+     instructions = appInfo.instructions.onlyRestaurant
+   
+  }
+ else if(currentCategory != null && currentRestaraunt != null && currentMenu == null){
+    instructions = appInfo.instructions.noSelectedItem
+  
+ }
+ else if(currentCategory != null && currentRestaraunt != null && currentMenu != null){
+     instructions = appInfo.instructions.allSelected
+
+    }
+
+
 
   let currentMenuItems = data.filter((obj) => {
     return(
@@ -88,7 +114,7 @@ export function App() {
         </div>
 
         {/* INSTRUCTIONS GO HERE */}
-        <Instructions instructions={appInfo.instructions.start}/>
+        <Instructions instructions={instructions}/>
 
         {/* MENU DISPLAY */}
         <div className="MenuDisplay display">
